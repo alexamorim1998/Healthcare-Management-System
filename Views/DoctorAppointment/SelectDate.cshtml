@@ -1,0 +1,78 @@
+﻿@model RINTE_Care.Models.AppoimentDoctorDateView
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "SelectDate";
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+<link rel="stylesheet" href="~/lib/jqueryui/jquery-ui.css"  />
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jqueryui/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+
+    $(function () {
+        //var enableDays = ["5-1-2021"];
+        var enableDays =  @Html.Raw(JsonConvert.SerializeObject(Model.datesAvailables));
+
+        function enableAllTheseDays(date) {
+            var sdate = $.datepicker.formatDate('d-m-yy', date)
+            console.log(sdate)
+            if ($.inArray(sdate, enableDays) != -1) {
+                return [true];
+            }
+            return [false];
+        }
+
+        $('#datepicker').datepicker(
+            {
+                dateFormat: 'dd-mm-yy',
+                beforeShowDay: enableAllTheseDays,
+                regional: "English",
+                numberOfMonths: 2,
+                showWeek: true,
+                firstDay: 1,
+                showButtonPanel: true
+            });
+
+        $("#datepicker").datepicker().change(
+            function () {
+                //dateFormat: "yy-mm-dd",
+                //alert($(this).val());
+                console.log($(this).val())
+                $("#date").val($(this).val());
+            }
+        )
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SelectDate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @Html.HiddenFor(modelItem => modelItem.idAvailability)
+            @Html.HiddenFor(modelItem => modelItem.idPatient)
+            @Html.HiddenFor(modelItem => modelItem.date, new { id = "date" })
+
+            @*<div class="form-group">
+            <label asp-for="date" class="control-label">Date</label>
+            <div class="form-controlcol-xs-4 col-xs-push-0">
+                @Html.DropDownListFor(m => m.date, new SelectList(Model.datesAvailables, "date"), htmlAttributes: new { @class = "form-control", id = "Id" })
+            </div>
+        </div>*@
+            @*<p>Date: <input type="text" id="datepicker" size="30"></p>*@
+            @*ínline*@
+            <div id="datepicker"></div>
+            <br> <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

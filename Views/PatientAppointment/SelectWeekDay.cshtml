@@ -1,0 +1,34 @@
+﻿@model IEnumerable<RINTE_Care.Models.WeekDayClass>
+
+@{
+    ViewData["Title"] = "SelectWeekDay";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @Html.HiddenFor(modelItem => item.idWeekDay)
+            @Html.HiddenFor(modelItem => item.WeekDay)
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Select", "SelectAvailabity", new { idWeekDay = item.idWeekDay, idDoctor=ViewBag.idDoctor  })
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="GetSpeciality">Back to List</a>
+</div>

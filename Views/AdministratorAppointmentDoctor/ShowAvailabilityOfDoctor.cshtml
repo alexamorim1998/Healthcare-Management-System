@@ -1,0 +1,67 @@
+﻿@model IEnumerable<RINTE_Care.Models.DoctorAvailabilityView>
+
+@{
+    ViewData["Title"] = "ShowAvailabilityOfDoctor";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeekDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SlotInformation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DayStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DayEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.active)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @Html.HiddenFor(modelItem => item.id)
+                @Html.HiddenFor(modelItem => item.idDoctor)
+                @Html.HiddenFor(modelItem => item.idWeekDay)
+                @Html.HiddenFor(modelItem => item.idSlot)
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WeekDay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SlotInformation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DayStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DayEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.active)
+                </td>
+                <td>
+                    @Html.ActionLink("Patient", "FindPatient", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+     <a asp-action="ProcurarMedico">Back to List</a>
+</div>

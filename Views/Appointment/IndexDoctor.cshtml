@@ -1,0 +1,61 @@
+﻿@model IEnumerable<RINTE_Care.Models.DoctorAppointmentView>
+
+@{
+    ViewData["Title"] = "IndexDoctor";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WeekdayString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SlotString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAppointment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @Html.HiddenFor(modelItem => item.id)
+            @Html.HiddenFor(modelItem => item.idDoctorAvailability)
+            @Html.HiddenFor(modelItem => item.idPatient)
+            <td>
+                @Html.DisplayFor(modelItem => item.WeekdayString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SlotString)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAppointment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.ActionLink("Cancel", "CancelDoctor", new { id = item.id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

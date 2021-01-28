@@ -1,0 +1,84 @@
+﻿@model RINTE_Care.Models.Doctor
+
+@{
+    ViewData["Title"] = "GetProfile";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GetProfile">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="idDoctor" class="control-label"></label>
+                <input asp-for="idDoctor" class="form-control" />
+                <span asp-validation-for="idDoctor" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxNumber" class="control-label"></label>
+                <input asp-for="TaxNumber" class="form-control" />
+                <span asp-validation-for="TaxNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProfessionalLicenseNumber" class="control-label"></label>
+                <input asp-for="ProfessionalLicenseNumber" class="form-control" />
+                <span asp-validation-for="ProfessionalLicenseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZipCode" class="control-label"></label>
+                <input asp-for="ZipCode" class="form-control" />
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="idSpecialization" class="control-label"></label>
+                <input asp-for="idSpecialization" class="form-control" />
+                <span asp-validation-for="idSpecialization" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<text style="color:red">@ViewBag.Error</text>
+
+

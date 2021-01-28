@@ -1,0 +1,44 @@
+﻿@model IEnumerable<RINTE_Care.Models.DoctorAvailabilityView>
+
+@{
+    ViewData["Title"] = "SelectAvailabity";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SlotInformation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DayStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DayEnd)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @Html.HiddenFor(modelItem => item.id)
+            <td>
+                @Html.DisplayFor(modelItem => item.SlotInformation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayEnd)
+            </td>            
+            <td>
+                @Html.ActionLink("Select", "SelectDate", new { id = item.id }) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="GetSpeciality">Back to List</a>
+</div>

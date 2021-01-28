@@ -1,0 +1,28 @@
+﻿@model RINTE_Care.Models.SmallAppointmenView
+
+@{
+    ViewData["Title"] = "Appointment";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Appointment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.idPatient)
+            @Html.HiddenFor(model => model.idAvailability)
+            <div class="form-group">
+                <label asp-for="dateAppointment" class="control-label"></label>
+                <input asp-for="dateAppointment" class="form-control" />
+                <span asp-validation-for="dateAppointment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ProcurarMedico">Back to List</a>s
+</div>
+

@@ -1,0 +1,55 @@
+﻿@model RINTE_Care.Models.DoctorAvailability
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idDoctor)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idDoctor)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idWeekDay)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idWeekDay)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idSlot)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idSlot)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DayStart)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DayStart)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DayEnd)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DayEnd)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.active)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.active)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    <a asp-action="Index">Back to List</a>
+</div>

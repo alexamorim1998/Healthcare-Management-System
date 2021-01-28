@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Administrator</h1>
+
+<div class="pos-f-t">
+    <nav class="navbar">
+        <button title="Management of Profile" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ProfileNavbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>My profile</span>
+        </button>
+    </nav>
+    <div class="collapse" id="ProfileNavbarToggleExternalContent">
+        <div class="p-4">
+            <a class="nav-link" title="Change Password" asp-area="" asp-controller="User" asp-action="ChangePassword">Change Password</a>
+        </div>
+    </div>
+</div>
+
+<div class="pos-f-t">
+    <nav class="navbar">
+        <button title="Management of Physicians" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#DoctorsNavbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>Physicians</span>
+        </button>
+    </nav>
+    <div class="collapse" id="DoctorsNavbarToggleExternalContent">
+        <div class="p-4">
+            <a class="nav-link" title="Specialization" asp-area="" asp-controller="Specialization" asp-action="Index">Management of Specialties</a>
+            <a class="nav-link" title="Management of doctors" asp-area="" asp-controller="Doctor" asp-action="Index">Management of Physicians</a>
+        </div>
+    </div>
+</div>
+
+<div class="pos-f-t">
+    <nav class="navbar">
+        <button title="Management of Patients" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#PatientsNavbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>Patients</span>
+        </button>
+    </nav>
+    <div class="collapse" id="PatientsNavbarToggleExternalContent">
+        <div class="p-4">
+            <a class="nav-link" title="Patients" asp-area="" asp-controller="Patient" asp-action="Index">Management of Patients</a>
+        </div>
+    </div>
+</div>
+
+<div class="pos-f-t">
+    <nav class="navbar">
+        <button title="Management of Administrators" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#AdministratorsNavbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>Administrators</span>
+        </button>
+    </nav>
+    <div class="collapse" id="AdministratorsNavbarToggleExternalContent">
+        <div class="p-4">
+            <a class="nav-link" title="Management of Administrators" asp-area="" asp-controller="Administrator" asp-action="Index">Management of Administrators</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="pos-f-t">
+    <nav class="navbar">
+        <button title="Management of Users" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#UserNavbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>Users</span>
+        </button>
+    </nav>
+    <div class="collapse" id="UserNavbarToggleExternalContent">
+        <div class="p-4">
+            <a class="nav-link" title="Create" asp-area="" asp-controller="User" asp-action="Index">Management of Users</a>
+        </div>
+    </div>
+</div>
+<div class="pos-f-t">
+    <nav class="navbar">
+        <button title="Management of Appointment" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#AppointmentNavbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>Appointments</span>
+        </button>
+    </nav>
+    <div class="collapse" id="AppointmentNavbarToggleExternalContent">
+        <div class="p-4">
+            <a class="nav-link" title="Book" asp-area="" asp-controller="Appointment" asp-action="IndexAdministrator">Show</a>
+            <a class="nav-link" title="Book" asp-area="" asp-controller="AdministratorAppointmentDoctor" asp-action="ProcurarMedico">Create</a>
+        </div>
+    </div>
+</div>
+
+<div class="pos-f-t">
+    <nav class="navbar">
+        <button title="Management of Doctor availability" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#AvailabilityNavbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>Availability of Physicians</span>
+        </button>
+    </nav>
+    <div class="collapse" id="AvailabilityNavbarToggleExternalContent">
+        <div class="p-4">
+            <a class="nav-link" title="Book" asp-area="" asp-controller="Availability" asp-action="Index">Show</a>
+            <a class="nav-link" title="Administrator Create Availability Doctor" asp-area="" asp-controller="AdministratorAvailabilityDoctor" asp-action="ProcurarMedico">Create</a>
+        </div>
+    </div>
+</div>

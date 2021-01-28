@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Patient</h1>
+
+<div class="pos-f-t">
+    <nav class="navbar">
+        <button title="My Profile" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#MyProfileNavbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>My Profile</span>
+        </button>
+    </nav>
+    <div class="collapse" id="MyProfileNavbarToggleExternalContent">
+        <div class="p-4">
+            <a class="nav-link" title="Edit" asp-area="" asp-controller="Patient" asp-action="GetProfile">Show</a>
+            <a class="nav-link" title="Change Password" asp-area="" asp-controller="User" asp-action="ChangePassword">Change Password</a>
+        </div>
+    </div>
+</div>
+<div class="pos-f-t">
+    <nav class="navbar">
+        <button title="My Appointments" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#AppointmentNavbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span>My Appointments</span>
+        </button>
+    </nav>
+    <div class="collapse" id="AppointmentNavbarToggleExternalContent">
+        <div class="p-4">
+            <a class="nav-link" title="Book" asp-area="" asp-controller="Appointment" asp-action="IndexPatient">Show</a>
+            <a class="nav-link" title="Book" asp-area="" asp-controller="PatientAppointment" asp-action="GetSpeciality">Create</a>
+        </div>
+    </div>
+</div>
+

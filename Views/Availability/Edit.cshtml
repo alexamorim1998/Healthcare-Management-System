@@ -1,0 +1,56 @@
+﻿@model RINTE_Care.Models.DoctorAvailability
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="id" class="control-label"></label>
+                <input asp-for="id" class="form-control" />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idDoctor" class="control-label"></label>
+                <input asp-for="idDoctor" class="form-control" />
+                <span asp-validation-for="idDoctor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idWeekDay" class="control-label"></label>
+                <input asp-for="idWeekDay" class="form-control" />
+                <span asp-validation-for="idWeekDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="idSlot" class="control-label"></label>
+                <input asp-for="idSlot" class="form-control" />
+                <span asp-validation-for="idSlot" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DayStart" class="control-label"></label>
+                <input asp-for="DayStart" class="form-control" />
+                <span asp-validation-for="DayStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DayEnd" class="control-label"></label>
+                <input asp-for="DayEnd" class="form-control" />
+                <span asp-validation-for="DayEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="active" /> @Html.DisplayNameFor(model => model.active)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

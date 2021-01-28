@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RINTE_Care.Models.Doctor>
+
+@{
+    ViewData["Title"] = "GetDoctors";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @Html.HiddenFor(modelItem => item.idDoctor)
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.ActionLink("Select", "SelectWeekDay", new { idDoctor = item.idDoctor })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="GetSpeciality">Back to List</a>
+</div>

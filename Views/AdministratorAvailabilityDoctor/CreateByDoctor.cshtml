@@ -1,0 +1,44 @@
+﻿@model RINTE_Care.Models.DoctorAvailabilityView
+
+@{
+    ViewData["Title"] = "CreateByDoctor";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateByDoctor" asp-route-id=@ViewBag.idDoctor>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(model => model.idDoctor)
+
+            <div class="form-group">
+                <div class="form-controlcol-xs-4 col-xs-push-0">
+                    @Html.DropDownListFor(modelItem => modelItem.idWeekDay, new SelectList(ViewBag.listOfweekdays, "idWeekDay", "Name"), htmlAttributes: new { @class = "form-control", id = "Id" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-controlcol-xs-4 col-xs-push-0">
+                    @Html.DropDownListFor(modelItem => modelItem.idSlot, new SelectList(ViewBag.listOfSlots, "idSlot", "StartHour"), htmlAttributes: new { @class = "form-control", id = "Id" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DayStart" class="control-label"></label>
+                <input asp-for="DayStart" class="form-control" />
+                <span asp-validation-for="DayStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DayEnd" class="control-label"></label>
+                <input asp-for="DayEnd" class="form-control" />
+                <span asp-validation-for="DayEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="active" /> @Html.DisplayNameFor(model => model.active)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

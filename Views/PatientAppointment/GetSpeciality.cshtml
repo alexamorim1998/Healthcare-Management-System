@@ -1,0 +1,29 @@
+﻿@model IEnumerable<RINTE_Care.Models.Specialization>
+
+@{
+    ViewData["Title"] = "GetSpeciality";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @Html.HiddenFor(modelItem => item.idSpecialization)
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Select", "GetDoctors", new {  id=item.idSpecialization})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,191 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var username = HttpContextAccessor.HttpContext.Session.GetString("Username_");
+    var islooged = username != null;
+    var role = HttpContextAccessor.HttpContext.Session.GetString("Role_");
+    string managment = "";
+    if (role != null)
+    {
+        switch (role)
+        {
+            case UserApplication.Administrator:
+                managment = "ManagementAdministrator";
+                break;
+            case UserApplication.Doctor:
+                managment = "ManagementDoctors";
+                break;
+            case UserApplication.Patient:
+                managment = "ManagementPatient";
+                break;
+            default:
+                break;
+        }
+    }
+
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #090808;
+            color: white;
+            text-align: center;
+        }
+    </style>
+    <title>@ViewData["Title"] - RINTECare Porto</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/jqueryui/jquery-ui.css" />    
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <!-- Brand/logo -->
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="HomeIndex">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAA8CAYAAABPXaeUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAHV2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDggNzkuMTY0MDM2LCAyMDE5LzA4LzEzLTAxOjA2OjU3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjEuMCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDIwLTEwLTA4VDE4OjQxOjMyKzAxOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDIwLTEwLTA4VDE4OjQxOjMyKzAxOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyMC0xMC0wOFQxODo0MTozMiswMTowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1NmExMDg0Ni1mMGNmLWEyNDItYWU5Yy00M2E5MTMxNDRlNGUiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDoxOTExMmQ5OS02ZGU3LTdhNDUtYWRjMS0xOTU1MmUzODQ0NzMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpjNDg5YzdmZi0yNDRmLWJlNDUtYWIzZS1mODQwZmYwMmQ5MTYiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmM0ODljN2ZmLTI0NGYtYmU0NS1hYjNlLWY4NDBmZjAyZDkxNiIgc3RFdnQ6d2hlbj0iMjAyMC0xMC0wOFQxODo0MTozMiswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo1NmExMDg0Ni1mMGNmLWEyNDItYWU5Yy00M2E5MTMxNDRlNGUiIHN0RXZ0OndoZW49IjIwMjAtMTAtMDhUMTg6NDE6MzIrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCAyMS4wIChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPHBob3Rvc2hvcDpUZXh0TGF5ZXJzPiA8cmRmOkJhZz4gPHJkZjpsaSBwaG90b3Nob3A6TGF5ZXJOYW1lPSJQUk9WSURJTkcgTkVYVCBHRU5FUkFUSU9OIFNFUlZJQ0VTIFNJTkNFIDIwMjAiIHBob3Rvc2hvcDpMYXllclRleHQ9IlBST1ZJRElORyBORVhUIEdFTkVSQVRJT04gU0VSVklDRVMgU0lOQ0UgMjAyMCIvPiA8L3JkZjpCYWc+IDwvcGhvdG9zaG9wOlRleHRMYXllcnM+IDxwaG90b3Nob3A6RG9jdW1lbnRBbmNlc3RvcnM+IDxyZGY6QmFnPiA8cmRmOmxpPnhtcC5kaWQ6MWE4NDBiNWQt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" alt="logo" style="width: 180px;" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="nav navbar-nav  flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="https://www.livroreclamacoes.pt/inicio">Complaints Book</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Health">Health+</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a>
+                        </li>
+                        @if (islooged)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller=@managment asp-action="Index">Management</a>
+                            </li>
+                        }
+                    </ul>
+                    @if (islooged)
+                    {
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="nav-item">
+                                <a class="nav-link glyphicon glyphicon-log-in text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout @username</a>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="nav-item">
+                                <a class="nav-link glyphicon glyphicon-log-in text-dark" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="nav-item">
+                                <a class="nav-link glyphicon glyphicon-log-in text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div>
+                Copyright &copy;2021 RINTECare Porto, All Rights Reserved to Alexandre Amorim [1161497]
+                <a href="#popupModel" role="button" id="ShowPopup" data-toggle="modal">Privacy</a>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+<div id="popupModel" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="height:550px;overflow-y:scroll;">
+            <div class="modal-header text-center">
+                <h2 class="modal-title w-100">Privacy</h2>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+            </div>
+            <div style="padding:5px">
+                <div>
+                    <h3>1. General provisions</h3>
+                    <p>RINTECare Porto is very committed to data protection. Personal data will not be collected, processed and used on our website except to the extent required for technical reasons and for the execution of individual services and contents and unless you gave your separate consent or the data are processed based on our legitimate interests. Should the use of individual contents and services on our website require the entry of personal data (e.g. the processing of enquiries made via our contact forms), we will only collect and use the data for the purpose for which you provide them.</p>
+                    <h3>2. Name and contact data of the controller and of the company data protection officer</h3>
+                    <p>This data protection information applies to the processing of your data by: Controller: RINTECare Porto, R. Dr. António Bernardino de Almeida 431, 4200-072 Porto | Telephone: 224890213. The company’s data protection officer may be contacted at the above-stated address, attn. data protection officer, or at <a href="mailto:data-protection-rcp@rintecare-porto.com">data-protection-rcp@rintecare-porto.com</a>.</p>
+                    <h3>3. Collection and storage of personal data, type of data and purpose for which they are used</h3>
+                    <p>Personal data shall be erased immediately when they are no longer needed for the purpose for which they were stored and provided there is no legal or statutory retention obligation which would be violated by such erasure and/or destruction. We will process your data as follows:</p>
+                    <h4>a.When you visit our website</h4>
+                    <p>During your visit on our websites, our webserver will automatically and temporarily store the access data of the computer from which the request was made, the pages you visit on our website, the date and duration of your visit, the identification data of your browser and operating system and the website from which you accessed our website (so-called server log data). Additional personal data such as your name, your address, telephone number or e-mail address will not be collected and the server log data will not be connected with any personal data.</p>
+                    <p>We will process the above-stated information for the following purposes:</p>
+                    <ul>
+                        <li>in order to guarantee smooth connection with our website;</li>
+                        <li>in order to guarantee that you will be able to use our website as intended;</li>
+                        <li>in order to analyze system security and system stability;</li>
+                        <li>for other administrative purposes.</li>
+                    </ul>
+                    <p>The legal basis for the processing of your personal data shall be Article 6, paragraph 1, clause 1, lit. f of the GDPR. Our legitimate interest is based on the above-listed purposes of data processing. In no event will we use the collected data in order to draw any conclusions about you personally. The data will be stored and erased after 13 months.</p>
+                    <h4>b. Cookies</h4>
+                    <p>We use cookies on our websites.</p>
+                    <p>Cookies are small files that are stored on your hard drive and that store certain settings and data concerning your browser for the exchange with our system. Their purpose is to add user-friendliness and efficiency to the websites</p>
+                    <p>You may delete cookies in the settings of your browser at any time and you may adjust your browser settings in accordance with your requirements, e.g. you may reject cookies generally. As a general rule, you may access the help function on the menu bar of your web browser and learn how to reject new cookies and delete cookies from your system. However, please be advised that you might not be able to fully use all of this website’s functions without cookies.</p>
+                    <p>Some of our cookies are session cookies and will be deleted from your hard drive at the end of your browser session. In addition, we also use permanent cookies, which remain on your hard drive. When you re-visit our website, we automatically recognize you as a former visitor and your information and settings. These cookies are stored on your hard drive and will be deleted automatically after a certain period of time.</p>
+                    <p>The cookies we use cannot be allocated to a specific individual. Upon activation, an identification number is allocated to the cookie. Such identification number cannot and will not be allocated to your identity. We do not store your name or similar data based on which the cookie could be allocated to you personally.</p>
+                    <p>The legal basis for this type of data processing is your express consent in accordance with Article 6, para. 1, clause 1, lit. a of the GDPR, which you give when you consent to the use of cookies and tracking.</p>
+                    <h4>c. Analysis (Tracking)</h4>
+                    <p>We will use the data stipulated in a) above using a tool that replaces the last two bytes of your IP address with zeros, including for the purpose of analyzing your use of our website and of guaranteeing that our website is designed to fulfill your requirements, and of enabling us to continually improve our website. Additionally, we use tracking measures in order to compile statistics on the use of our website and in order to further improve our website.</p>
+                    <p>In addition to the data stipulated in a) above, the tool also records the following data:</p>
+                    <ul>
+                        <li>device type, device model, device brand</li>
+                        <li>screen resolution</li>
+                        <li>plug-ins used (e.g. Flash, Java)</li>
+                        <li>referrer URL (previous page accessed by the user)</li>
+                        <li>country and region from which the request originated</li>
+                        <li>downloads</li>
+                        <li>clicks</li>
+                        <li>number of forms sent (depending on the goals defined)</li>
+                    </ul>
+                    <p>The legal basis for this type of data processing is your express consent in accordance with Article 6, para. 1, clause 1, lit. a of the GDPR which you give when you consent to the use of cookies and tracking. The data will be stored and erased after 13 months. If you do not wish your activities on our website to be tracked or analyzed, please activate the «Do not track» setting in your browser. Please go to your browser options to activate this setting.</p>
+                    <p>In addition to this internal analysis, we use third-party tracking functions in order to be able to better tailor our website to our users’ requirements. Moreover, we aim at improving our website based on the analyses of how it is used. These data are processed on the basis of your express consent in accordance with Article 6, para. 1, lit. a of the GDPR.</p>
+                    <p>Please note that we can hardly influence the data processing activities of these third-party tracking tools and that the only information we have is the information that these third-party tracking tools provide in their data protection information.</p>
+                    <h4>d) Registration for one of our newsletters</h4>
+                    <p>In order to be able to send you our newsletter, we need your e-mail address and, for the purpose of the so-called double opt-in, the confirmation that you are in fact the owner of the stated e-mail address and that you wish to receive our newsletter.</p>
+                    <p>For this purpose, we will send you an e-mail to the account you stated after you registered for our newsletter. With this e-mail we ask you to confirm that you wish to receive our newsletter by clicking on the link contained in the e-mail. Thereafter, you will receive the newsletter for which you registered. We only use your e-mail address for sending our newsletter and will not disclose it to any third party. The legal basis for the processing of your data in this case is Article 6, para. 1, clause 1, lit. a of the GDPR.</p>
+                    <p>You may withdraw your registration for the newsletter and your related consent at any time. A link for deregistration is included at the bottom of every newsletter.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
